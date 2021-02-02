@@ -1,0 +1,43 @@
+import React,{useState,useEffect} from 'react';
+import ImageGrid from '../Components/ImageGrid/ImageGrid';
+import ModalGallery from '../Components/Modal/ModalGallery';
+import Button from '../Components/UI/Button/Button';
+import classes from './Cloudgram.module.css';
+
+const Cloudgram=(props)=> {
+    const path=props.location.pathname;
+    const [title, setTitle] = useState('');
+    const [images, setImages] = useState([]);
+    const [change,setChange]=useState(true);
+    const [data,setData]=useState({
+        caption:'ad',
+        friend:'asd',
+        date:'asdd'
+    });
+    const [selectedImage,setSelectedImage]=useState(null);
+    const changeImagesHandler=()=>{
+        setChange(!change);
+        console.log(change);
+    }
+    useEffect(() => {
+            if (change) {
+                setTitle('Show Friends Images');
+            }
+            else{
+                setTitle('Show My Images');
+            }
+        return () => {
+            setTitle('');
+        }
+    }, [change])
+    return (
+        <div className={classes.Cloudgram} >
+            <Button  onClick={changeImagesHandler} >{title}</Button>
+            <hr />
+            <ImageGrid setSelectedImage={setSelectedImage} />
+            {selectedImage && <ModalGallery selectedImage={selectedImage} setSelectedImage={setSelectedImage} data={data} pathname={path}/>}
+        </div>
+    )
+}
+
+export default Cloudgram;

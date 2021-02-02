@@ -1,0 +1,22 @@
+.Input{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    outline: none;
+    color: white;
+    margin: 5px 0;
+    padding: 5px;
+    font-size: 1em;
+    opacity: 0.8;
+    line-height: 4em;
+}
+
+.Input:hover{
+    opacity: 1;
+    border-bottom: 1px solid #fff;
+}
+.Input:focus{
+    opacity: 1;
+    border-bottom: 1px solid #fff;
+}

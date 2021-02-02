@@ -1,0 +1,35 @@
+.Contact{
+    position: absolute;
+    min-height: 35vh;
+    width: 27vw;
+    right: 20px;
+    bottom: 10vh;
+    border-radius: 10px;
+    padding: 20px ;
+    box-shadow: 0 0 5px 5px chocolate;
+    background-color: #161616;
+}
+
+.Contact h2{
+    margin: 0;
+    opacity: 0.9;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+.Contact form{
+    display: flex;
+    flex-flow: column;
+}
+
+.Contact textarea{
+    background: transparent;
+    color: #ffffff;
+    resize: none;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 1.2em;
+    margin: 5px 0;
+    border-radius: 2px;
+}
+

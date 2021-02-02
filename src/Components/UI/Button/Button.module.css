@@ -1,0 +1,20 @@
+.Button{
+    margin-top: 5px;
+    height: 35px;
+    background-color: #f95200;
+    color: #3c2c24;
+    outline: none;
+    border: none;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.Button:hover{
+    background-color: #fd6000;
+}
+.Button:focus{
+    background-color: #fd6000;
+}

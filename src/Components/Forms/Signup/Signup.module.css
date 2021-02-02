@@ -1,0 +1,16 @@
+.Signup{
+    position: absolute;
+    min-height: 50vh;
+    width: 27vw;
+    right: 20px;
+    bottom: 10vh;
+    border-radius: 10px;
+    padding: 20px ;
+    box-shadow: 0 0 5px 5px chocolate;
+    background-color: #161616;
+}
+.Signup form{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}

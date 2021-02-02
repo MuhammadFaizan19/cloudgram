@@ -1,0 +1,15 @@
+.NavLink{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.NavLink:hover{
+    opacity: 1;
+}
+
+.active{
+    opacity: 1;
+    text-decoration: underline;
+}

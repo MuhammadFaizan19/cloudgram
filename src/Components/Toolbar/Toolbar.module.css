@@ -1,0 +1,38 @@
+.Header{
+    height: 8vh;
+    padding: 0 40px;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.Header h2{
+    font-size: 1.6em;
+    opacity: 0.8;
+}
+.Header h2:hover{
+    opacity: 1;
+}
+
+.Header nav ul{
+    display: flex;
+    justify-content: space-around;
+    width: 40vw;
+}
+
+.NavLink{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.NavLink:hover{
+    opacity: 1;
+}
+
+.active{
+    opacity: 1;
+    text-decoration: underline;
+}

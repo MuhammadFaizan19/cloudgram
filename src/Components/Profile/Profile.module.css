@@ -1,0 +1,11 @@
+.Profile{
+    min-width: 15vw;
+    min-height: 20vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.ProfileTable{
+    background-color: #161616;
+}
