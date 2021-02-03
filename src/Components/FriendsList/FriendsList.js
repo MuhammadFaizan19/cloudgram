@@ -1,7 +1,6 @@
 import classes from './FriendsList.module.css';
 import React from 'react'
 import ModalFriends from '../Modal/ModalFriends';
-import Profile from '../Profile/Profile';
 import Friend from './Friend/Friend';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
@@ -12,15 +11,14 @@ const friendsList = () => {
     }
     return (
         <div className={classes.Friends}>
-            <Profile />
             <ModalFriends images={[]} />
             <div>
                 <h2>Friends</h2>
                 <div>
-                <Input type='text' name="Friend's Email"/>
-                <Button>Add</Button>
+                    <Input type='text' name="Friend's Email" />
+                    <Button>Add</Button>
                 </div>
-                <div  className={classes.FriendsList}>
+                <div className={classes.FriendsList}>
                 </div>
             </div>
         </div>

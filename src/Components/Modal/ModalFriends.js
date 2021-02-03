@@ -3,8 +3,8 @@ import classes from './ModalFriends.module.css';
 import Button from '../UI/Button/Button';
 
 const modalFriends = (props) => {
-    const clickHandler=()=>{
-        document.querySelector('.'+classes.ModalFriends).style.display='none';
+    const clickHandler = () => {
+        document.querySelector('.' + classes.ModalFriends).style.display = 'none';
     }
     return (
         <div id='modalFriends' className={classes.ModalFriends}>

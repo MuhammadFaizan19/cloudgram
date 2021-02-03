@@ -1,0 +1,43 @@
+.UploadForm{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border: 1px solid rgb(172, 135, 135);
+    background-color: rgb(17, 17, 17);
+    border-radius: 10px;
+}
+.UploadForm:hover{
+    background-color: rgb(24, 23, 23);
+}
+
+.Upload input{
+    height: 0;
+    width: 0;
+    opacity: 0;
+  } 
+  .Upload span{
+    font-size: 25px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+  }
+  
+  .Upload{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid coral;
+    border-radius: 50%;
+    margin: 10px auto;
+    line-height: 30px;
+    padding: 10px;
+  }
+  .Upload:hover{
+    background: content-box;
+    color: orangered;
+    border: 2px solid orangered;
+  }
