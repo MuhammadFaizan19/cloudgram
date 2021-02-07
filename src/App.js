@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 const App=(props)=> {
   const {auth}=props;
   useEffect(() => {
-    console.log('App');
   }, [auth.uid])
   return (
     <div className={classes.App}>

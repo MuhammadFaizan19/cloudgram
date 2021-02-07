@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 const Toolbar = (props) => {
     const { auth } = props;
     useEffect(() => {
-        console.log('toolbar')
     }, [auth.uid])
     return (
         <header className={classes.Header}>

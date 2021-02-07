@@ -9,7 +9,6 @@ import { reduxFirestore, getFirestore }    from 'redux-firestore'
 import { getFirebase } from 'react-redux-firebase'
 import firebase                            from '../Firebase/Config'
 
-const getStorage=firebase.storage();
 const store = createStore(
 	rootReducer,
 	compose(
@@ -17,8 +16,7 @@ const store = createStore(
 			thunk.withExtraArgument({
 				getFirebase,
 				getFirestore,
-				getStorage
-
+				getStorage:firebase.storage()
 			})
 		),
 		reduxFirestore(firebase),
