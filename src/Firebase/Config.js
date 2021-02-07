@@ -16,6 +16,6 @@ firebase.firestore().settings({
 	timestampsInSnapshots: true
 });
 
-export {firebaseConfig};
-
+const timeStamp=firebase.firestore.FieldValue.serverTimestamp;
+export{timeStamp,firebaseConfig};
 export default firebase;

@@ -6,11 +6,12 @@
     width: 150px;
     height: 150px;
     border: 1px solid rgb(172, 135, 135);
-    background-color: rgb(17, 17, 17);
+    background-color: rgb(10, 10, 10);
     border-radius: 10px;
+    margin-top: 10px;
 }
 .UploadForm:hover{
-    background-color: rgb(24, 23, 23);
+    background-color: rgb(31, 29, 29);
 }
 
 .Upload input{

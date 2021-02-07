@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ImageGrid from '../Components/ImageGrid/ImageGrid';
 import ModalGallery from '../Components/Modal/ModalGallery';
 import Button from '../Components/UI/Button/Button';
-import UploadImage from '../Components/UploadImage/UploadImage';
 import classes from './Cloudgram.module.css';
 
 const Cloudgram = (props) => {
@@ -32,8 +31,7 @@ const Cloudgram = (props) => {
             <Button onClick={changeImagesHandler} >{title}</Button>
             <hr />
             <ImageGrid setSelectedImage={setSelectedImage} />
-            <UploadImage />
-            {selectedImage && <ModalGallery selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>}
+            {selectedImage && <ModalGallery selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}
         </div>
     )
 }
