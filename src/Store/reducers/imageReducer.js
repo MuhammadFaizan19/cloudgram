@@ -14,7 +14,20 @@ const imageReducer = (state = initState, action) => {
             console.log('uploading image success');
             return {
                 ...state,
+                images:action.images,
                 authError: null
+            }
+        case 'GET_IMAGE_SUCCESS':
+            console.log('images[]')
+            return {
+                ...state,
+                images:[],
+                authError: null
+            }
+        case 'GET_IMAGE_ERROR':
+            return {
+                ...state,
+                authError: 'Images retrieval Failed'
             }
         default:
             return state

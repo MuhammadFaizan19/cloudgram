@@ -9,7 +9,6 @@ const UploadImage = (props) => {
     useEffect(() => {
         if (image) {
             props.upload(image)
-            console.log('upload21')
         }
     }, [image])
     return (
@@ -18,6 +17,9 @@ const UploadImage = (props) => {
                 <input type='file' className={classes.hide} name='image' onChange={(e) => {
                     setImage(e.target.files[0]);
                     document.getElementById('name').textContent = e.target.files[0].name;
+                    setTimeout(() => {
+                        document.getElementById('name').textContent='Upload Image'
+                    }, 2200);
                 }}
                     accept='image/jpeg,image/png' />
                 <span>+</span>
