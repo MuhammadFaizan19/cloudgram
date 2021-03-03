@@ -1,0 +1,29 @@
+
+.imageInput{
+  height: 0;
+  width: 0;
+  opacity: 0;
+  display: none;
+}
+
+.upload{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.button{
+  outline: none;
+  border: none;
+  width: 200px;
+  height: 45px;
+  background-color: #191919;
+  color: bisque;
+}
+.button:hover{
+  background-color: #353535;
+}
+.button:focus{
+  background-color: #353535;
+}
