@@ -3,7 +3,6 @@ import classes from './App.module.css';
 import BackgroundImage from './Components/BackgroundImage/BackgroundImage';
 import Toolbar from './Components/Toolbar/Toolbar';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Contact from './Components/Forms/Contact/Contact';
 import Signin from './Components/Forms/Signin/Signin';
 import Signup from './Components/Forms/Signup/Signup';
 import LandingIntro from './Components/LandingIntro/LandingIntro';
@@ -22,7 +21,6 @@ const App = ({ isLoggedIn }) => {
 
           <Switch>
 
-            <Route path='/contact' exact component={Contact} />
             <Route path='/login' exact component={Signin} />
             <Route path='/signup' exact component={Signup} />
             <Redirect from='/' to='/cloudgram' />

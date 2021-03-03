@@ -39,7 +39,7 @@ const UploadImage = ({ upload, title, uploadError, setSharing }) => {
             </button>
             }
             <button onClick={handleShare} className={classes.button}>Share Image</button>
-            {uploadError ? <p>{uploadError}</p> : null}
+            {uploadError && <p>{uploadError}</p>}
 
         </div>
     )

@@ -18,7 +18,7 @@ const ImageGrid = ({ images, title }) => {
             {selectedImage && <ModalGallery selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}
             <div>
                 {images && images.map((i, index) => {
-                    return <img src={'http://localhost:3002/' + i.imagePath} alt='' className={classes.Image} key={index} onClick={() => setSelectedImage(i)} />
+                    return <img src={i.imagePath} alt='' className={classes.Image} key={index} onClick={() => setSelectedImage(i)} />
                 })}
             </div>
         </div>

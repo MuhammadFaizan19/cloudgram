@@ -13,7 +13,6 @@ export const imageUpload = (image) => {
                 dispatch({ type: 'IMAGE_UPLOAD_SUCCESS', images })
             })
             .catch((err) => {
-                console.log(err)
                 dispatch({ type: 'IMAGE_UPLOAD_ERROR' })
             })
 
@@ -52,7 +51,6 @@ export const updateImage = (imageUpdate) => {
     return (dispatch, getState) => {
         axios.put('http://localhost:3002/api/images/' + imageUpdate._id, imageUpdate)
             .then(res => {
-                console.log(res.data)
                 dispatch({ type: 'UPDATE_IMAGE_SUCCESS', updatedImage: res.data })
             })
             .catch(err => {

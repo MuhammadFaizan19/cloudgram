@@ -12,7 +12,7 @@ const modalGallery = (props) => {
     return (
         <div className={classes.ModalGallery} onClick={clickHandler} >
             <div className={classes.Container}>
-                <img src={"http://localhost:3002/" + props.selectedImage.imagePath} alt='' />
+                <img src={props.selectedImage.imagePath} alt='' />
             </div>
         </div>
     )

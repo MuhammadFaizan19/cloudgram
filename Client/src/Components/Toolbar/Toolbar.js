@@ -5,19 +5,22 @@ import { connect } from "react-redux";
 import { signOut } from '../../Store/actions/authActions';
 import { NavLink } from 'react-router-dom';
 
-const Toolbar = ({ isLoggedIn, signOut }) => {
-
+const Toolbar = ({ isLoggedIn, name, signOut }) => {
     return (
         <header className={classes.Header}>
             <h2><NavLink className={classes.NavLink} to='/cloudgram' id='cloudgram' >Cloudgram</NavLink></h2>
             <nav>
                 <ul>
-                    {!isLoggedIn && <> <li><NavLink to='/contact' id='contact' className={classes.NavLink} >Contact</NavLink></li>
-                        <li><NavLink to='/login' id='login' className={classes.NavLink} >Login</NavLink></li>
-                        <li><NavLink to='/signup' id='signup' className={classes.NavLink} >Signup</NavLink></li> </>}
+                    {!isLoggedIn &&
+                        <>
+                            <li><NavLink to='/login' id='login' className={classes.NavLink} >Login</NavLink></li>
+                            <li><NavLink to='/signup' id='signup' className={classes.NavLink} >Signup</NavLink></li>
+                        </>
+                    }
 
                     {isLoggedIn &&
                         <>
+                            {name && <li className={classes.NavLink} >{name.toUpperCase()}</li>}
                             <li> <NavLink to='/login' id='logout' onClick={() => signOut()} className={classes.NavLink} >Logout</NavLink></li>
                         </>
                     }
@@ -30,6 +33,7 @@ const Toolbar = ({ isLoggedIn, signOut }) => {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.firebase.auth.uid,
+        name: state.auth.userData?.name
     }
 }
 

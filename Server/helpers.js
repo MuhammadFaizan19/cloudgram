@@ -10,7 +10,7 @@ exports.getImages = (req, res) => {
 
 exports.createImage = (req, res) => {
     db.Image.create({
-        imagePath: req.file.path,
+        imagePath: 'http://cloudgram.herokuapp.com/' + req.file.path,
         userEmail: req.body.userEmail,
         sharedTo: []
     })
@@ -21,11 +21,7 @@ exports.createImage = (req, res) => {
 }
 
 exports.updateImage = (req, res) => db.Image.findOneAndUpdate({ _id: req.params.imageId }, req.body, { new: true })
-    .then((image) => { console.log(image); res.status(201).json(image) })
-    .catch((error) => {
-        console.log(error)
-        res.send(error);
-    }
-    );
+    .then((image) => res.status(201).json(image))
+    .catch((error) => res.send(error));
 
 module.exports = exports;

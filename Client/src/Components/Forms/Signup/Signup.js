@@ -6,7 +6,7 @@ import Input from '../../UI/Input/Input';
 import { connect } from 'react-redux'
 import { signUp } from '../../../Store/actions/authActions';
 
-const Signup = ({ signUp, authError }) => {
+const Signup = ({ signUp, signupError }) => {
     const [state, setState] = useState({
         email: '',
         password: '',
@@ -31,7 +31,6 @@ const Signup = ({ signUp, authError }) => {
                 canSubmit = false
             }
         }
-        console.log(authError)
         canSubmit && setError(null)
         canSubmit && signUp(state);
 
@@ -45,7 +44,7 @@ const Signup = ({ signUp, authError }) => {
                 <Input type="email" name="email" onChange={handleChange} />
                 <Input type="password" name="password" onChange={handleChange} />
                 <Button type="submit" onClick={handleSubmit}>Signup</Button>
-                {authError ? <p>{authError}</p> : null}
+                {signupError && <p>{signupError}</p>}
                 {error ? <p>{error}</p> : null}
             </form>
         </div>
@@ -55,7 +54,7 @@ const Signup = ({ signUp, authError }) => {
 
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError
+        signupError: state.auth.signupError
     }
 }
 
