@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ImageGrid from '../Components/ImageGrid/ImageGrid';
-import ModalGallery from '../Components/Modal/ModalGallery';
 import Button from '../Components/UI/Button/Button';
 import classes from './Cloudgram.module.css';
 
@@ -10,7 +9,7 @@ import { getImages } from '../Store/actions/imageActions'
 const Cloudgram = ({ images, getImages }) => {
     const [title, setTitle] = useState('');
     const [change, setChange] = useState(true);
-    const [selectedImage, setSelectedImage] = useState(null);
+
 
 
     const changeImagesHandler = () => {
@@ -35,10 +34,9 @@ const Cloudgram = ({ images, getImages }) => {
 
     return (
         <div className={classes.Cloudgram} >
-            <Button onClick={changeImagesHandler} >{title}</Button>
+            <Button onClick={changeImagesHandler} id='controlImages' >{title}</Button>
             <hr />
-            <ImageGrid images={images} setSelectedImage={setSelectedImage} />
-            {selectedImage && <ModalGallery selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}
+            <ImageGrid title={title} images={images} />
         </div>
     )
 }

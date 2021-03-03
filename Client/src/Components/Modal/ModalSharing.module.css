@@ -1,11 +1,17 @@
+.Modal{
+  width: 100vw;
+  height: 100vh;
+  top:0;
+  position: absolute;
+}
 
-.ModalFriends{
+.ModalSharing{
     position: absolute;
     top: 10vh;
     left: 5vw;
     width: 90vw;
+    text-align: center;
     height: 85vh;
-    display: none;
     overflow-x: hidden;
     overflow-y: scroll;
     flex-flow: column;
@@ -14,20 +20,35 @@
     border-radius: 10px;
     z-index: 1;
   }
+
+  .selectedImage{
+    box-shadow: 0 0 10px blanchedalmond ;
+   }
   .Controls{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       padding: 10px;
   }
-  .Controls p{
-      font-style: italic;
-  }
-  .Controls button{
-    width: 70px;
-    height: 25px;
-    border-radius: 10px;
+  .button{
+    width: 170px;
+    margin-left: 40px;
+    margin-top: 10px;
+    height: 35px;
+    border-radius: 5px;
     font-size: 0.9em;
+    color: #101010;
+    font-weight:600;
+    background-color: rgb(255, 171, 0);
   }
+
+  .button:hover{
+    background-color: rgb(255, 206, 109);
+  }
+  .button:focus{
+    background-color: rgb(255, 206, 109);
+  }
+
+
   .Modimg{
     display: flex;
     flex-wrap: wrap;
@@ -36,7 +57,6 @@
     display: block;
     max-width: 150px;
     max-height: 150px;
-    box-shadow: 3px 3px 3px slategrey;
     background-color: white;
     padding: 3px;
     margin: 10px;

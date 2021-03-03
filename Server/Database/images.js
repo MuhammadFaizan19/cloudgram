@@ -10,9 +10,8 @@ let imageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    shared: {
-        type: Boolean,
-        required: true
+    sharedTo: {
+        type: Array,
     }
 })
 

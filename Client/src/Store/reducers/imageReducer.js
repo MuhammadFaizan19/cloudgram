@@ -1,5 +1,6 @@
 const initState = {
-
+    images: [],
+    err: null
 }
 
 const imageReducer = (state = initState, action) => {
@@ -26,6 +27,14 @@ const imageReducer = (state = initState, action) => {
                 ...state,
                 err: 'Error retrieving images'
             }
+        case 'UPDATE_IMAGE_SUCCESS':
+            return state
+        case 'UPDATE_IMAGE_ERROR':
+            return {
+                ...state,
+                err: 'Sharing failed'
+            }
+
         default:
             return state
     }

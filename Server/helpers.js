@@ -12,14 +12,20 @@ exports.createImage = (req, res) => {
     db.Image.create({
         imagePath: req.file.path,
         userEmail: req.body.userEmail,
-        shared: req.body.shared
+        sharedTo: []
     })
         .then((newImage) => {
             res.status(201).json(newImage)
         })
-        .catch((error) => { console.log(error);res.send(error); });
+        .catch((error) => { console.log(error); res.send(error); });
 }
 
-
+exports.updateImage = (req, res) => db.Image.findOneAndUpdate({ _id: req.params.imageId }, req.body, { new: true })
+    .then((image) => { console.log(image); res.status(201).json(image) })
+    .catch((error) => {
+        console.log(error)
+        res.send(error);
+    }
+    );
 
 module.exports = exports;

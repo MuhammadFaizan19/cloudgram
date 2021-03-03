@@ -17,12 +17,13 @@
 
 .Header nav ul{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     width: 40vw;
 }
 
 .NavLink{
     text-decoration: none;
+    margin: 0 15px;
     font-size: 1.2em;
     color: #ffffff;
     opacity: 0.8;

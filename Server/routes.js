@@ -8,7 +8,7 @@ var storage = multer.diskStorage({
         cb(null, './public/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
+        cb(null, file.originalname+'-'+Date.now())
     }
 })
 
@@ -28,6 +28,8 @@ router.route('/')
     .get(helpers.getImages)
     .post(upload.single('imagePath'), helpers.createImage)
 
+router.route('/:imageId')
+    .put(helpers.updateImage)
 
 // end the input stream and allow the process to exit 
 module.exports = router;

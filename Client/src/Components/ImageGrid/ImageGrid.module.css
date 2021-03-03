@@ -1,11 +1,12 @@
 .ImageGrid{
     display: flex;
     flex-wrap: wrap;
+    flex-flow: column;
+    align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 0 40px;
     width: 100%;
-    justify-content: center;
     min-height: 60vh;
     max-height: 90vh;
     padding-bottom: 10vh;

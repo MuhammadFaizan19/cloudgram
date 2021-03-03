@@ -18,8 +18,6 @@ const Toolbar = ({ isLoggedIn, signOut }) => {
 
                     {isLoggedIn &&
                         <>
-                            <li><NavLink to='/home' id='home' className={classes.NavLink} >Home</NavLink></li>
-                            {/* <li> <NavLink to='/friends' id='friends' className={classes.NavLink} >Friends</NavLink></li> */}
                             <li> <NavLink to='/login' id='logout' onClick={() => signOut()} className={classes.NavLink} >Logout</NavLink></li>
                         </>
                     }
