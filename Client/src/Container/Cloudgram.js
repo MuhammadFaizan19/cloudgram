@@ -5,8 +5,9 @@ import classes from './Cloudgram.module.css';
 
 import { connect } from 'react-redux'
 import { getImages } from '../Store/actions/imageActions'
+import { getProfile } from '../Store/actions/authActions';
 
-const Cloudgram = ({ images, getImages }) => {
+const Cloudgram = ({ images, getImages, getProfile }) => {
     const [title, setTitle] = useState('');
     const [change, setChange] = useState(true);
 
@@ -17,6 +18,7 @@ const Cloudgram = ({ images, getImages }) => {
     }
     useEffect(() => {
         getImages(false);
+        getProfile()
         // eslint-disable-next-line
     }, [])
 
@@ -49,7 +51,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getImages: (shared) => dispatch(getImages(shared))
+        getImages: (shared) => dispatch(getImages(shared)),
+        getProfile: () => dispatch(getProfile())
     }
 }
 

@@ -80,3 +80,17 @@ export const signUp = (newUser) => {
 			})
 	}
 }
+
+export const getProfile = () => {
+	return (dispatch, getState, { getFirebase }) => {
+		const firebase = getFirebase();
+		const uid = getState().firebase.auth.uid
+		firebase.firestore().collection('users').doc(uid).get()
+			.then(res => {
+				dispatch({ type: 'GET_PROFILE_SUCCESS', data: res.data() })
+			})
+			.catch(err => {
+				dispatch({ type: 'GET_PROFILE_ERROR' })
+			})
+	}
+}

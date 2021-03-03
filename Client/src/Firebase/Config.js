@@ -4,12 +4,12 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCEHF8KCmv2Q9wNZBAzCIAchsVW13eqt34",
-    authDomain: "cloudgram-v2.firebaseapp.com",
-    projectId: "cloudgram-v2",
-    storageBucket: "cloudgram-v2.appspot.com",
-    messagingSenderId: "363404342754",
-    appId: "1:363404342754:web:2496e7b8d95bf5cb5975bb"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_API_ID
 };
 
 firebase.initializeApp(firebaseConfig);
