@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 
-let imageSchema = new mongoose.Schema({
+let userImagesSchema = new mongoose.Schema({
     imagePath: {
         type: String,
         required: true
@@ -10,10 +10,11 @@ let imageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    sharedTo: {
-        type: Array,
+    shared: {
+        type: Boolean,
+        required: true
     }
 })
 
-let Image = mongoose.model('Image', imageSchema);
+let Image = mongoose.model('Image', userImagesSchema);
 module.exports = Image;

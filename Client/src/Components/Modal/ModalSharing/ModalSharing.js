@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import classes from './ModalSharing.module.css';
-import Input from '../UI/Input/Input'
-import { getUsers } from '../../Store/actions/userActions';
+import Input from '../../UI/Input/Input'
+import { getUsers } from '../../../Store/actions/userActions';
 import { connect } from 'react-redux';
-import { getImages, updateImage } from '../../Store/actions/imageActions';
+import { shareImage } from '../../../Store/actions/imageActions';
 
 
-const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, updateImage, getImages }) => {
+const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareImage }) => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [email, setEmail] = useState(null)
-    const [error, setError] = useState(null)
+    const [text, setText] = useState('Select An Image To Share')
 
     useEffect(() => {
         getUsers()
@@ -36,37 +36,35 @@ const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, update
 
     const handleShare = () => {
         if (selectedImage) {
-            if (email !== currentUser && !selectedImage.sharedTo.includes(email)) {
+            if (email !== currentUser) {
                 if (users.includes(email)) {
-                    const previousShared = selectedImage.sharedTo
-                    const newSharedTo = previousShared.concat([email])
-                    const updatedData = {
-                        ...selectedImage,
-                        sharedTo: newSharedTo
+                    const shareData = {
+                        imagePath: selectedImage.imagePath,
+                        userEmail: email,
+                        shared: true
                     }
-                    updateImage(updatedData)
+                    shareImage(shareData)
                     setTimeout(() => {
                         setSharing(false)
-                        getImages()
-                    }, 2000)
+                    }, 1000)
                 }
                 else {
-                    setError('User does not exist!')
+                    setText('User does not exist!')
                 }
             }
             else {
-                setError('Sharing not allowed')
+                setText('Sharing not allowed')
             }
         }
         else {
-            setError('Please select an Image!')
+            setText('Please select an Image!')
         }
     }
 
     return (
         <div className={classes.Modal} onClick={clickHandler} >
             <div id='modalSharing' className={classes.ModalSharing}>
-                <p>{error ? error : 'Select a single image'}</p>
+                <p>{text}</p>
                 <div className={classes.Controls}>
                     <Input onChange={handleChange} name='Email' />
                     <button onClick={handleShare} className={classes.button} >Share</button>
@@ -93,8 +91,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: () => dispatch(getUsers()),
-        updateImage: (updatedData) => dispatch(updateImage(updatedData)),
-        getImages: () => dispatch(getImages())
+        shareImage: (shareData) => dispatch(shareImage(shareData)),
     }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Toolbar.module.css';
 
 import { connect } from "react-redux";
@@ -6,6 +6,10 @@ import { signOut } from '../../Store/actions/authActions';
 import { NavLink } from 'react-router-dom';
 
 const Toolbar = ({ isLoggedIn, name, signOut }) => {
+    const [userName, setUserName] = useState(null)
+    if (name && userName !== name)
+        setUserName(name)
+
     return (
         <header className={classes.Header}>
             <h2><NavLink className={classes.NavLink} to='/cloudgram' id='cloudgram' >Cloudgram</NavLink></h2>
@@ -20,7 +24,7 @@ const Toolbar = ({ isLoggedIn, name, signOut }) => {
 
                     {isLoggedIn &&
                         <>
-                            {name && <li className={classes.NavLink} >{name.toUpperCase()}</li>}
+                            {userName && <li className={classes.NavLink} >{userName.toUpperCase()}</li>}
                             <li> <NavLink to='/login' id='logout' onClick={() => signOut()} className={classes.NavLink} >Logout</NavLink></li>
                         </>
                     }

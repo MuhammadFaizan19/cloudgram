@@ -26,8 +26,8 @@ app.use(session({
   secret: 'uwotm8'
 }))
 app.use(bodyParser.json());
-app.use('/public/uploads', express.static('./public/uploads'));
 app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use('/api/images', routes);
 app.use(express.static((__dirname, 'build')))
 

@@ -1,4 +1,3 @@
-
 export const signIn = () => {
 	return (dispatch, getState, { getFirebase }) => {
 		const firebase = getFirebase();
@@ -68,7 +67,7 @@ export const signUp = (newUser) => {
 				email: newUser.email,
 			})
 				.then((res) => {
-					dispatch({ type: 'SIGNUP_SUCCESS', data: newUser });
+					dispatch({ type: 'SIGNUP_SUCCESS', data: { name: newUser.name, email: newUser.email } });
 				})
 				.catch((err) => {
 					console.log(err)
@@ -87,6 +86,7 @@ export const getProfile = () => {
 		const uid = getState().firebase.auth.uid
 		firebase.firestore().collection('users').doc(uid).get()
 			.then(res => {
+				console.log(res.data())
 				dispatch({ type: 'GET_PROFILE_SUCCESS', data: res.data() })
 			})
 			.catch(err => {

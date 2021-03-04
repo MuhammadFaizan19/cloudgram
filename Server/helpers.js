@@ -10,9 +10,9 @@ exports.getImages = (req, res) => {
 
 exports.createImage = (req, res) => {
     db.Image.create({
-        imagePath: 'http://localhost:3002/' + req.file.path,
+        imageUrl: req.body.imageUrl,
         userEmail: req.body.userEmail,
-        sharedTo: []
+        shared: req.body.shared
     })
         .then((newImage) => {
             res.status(201).json(newImage)
@@ -23,5 +23,13 @@ exports.createImage = (req, res) => {
 exports.updateImage = (req, res) => db.Image.findOneAndUpdate({ _id: req.params.imageId }, req.body, { new: true })
     .then((image) => res.status(201).json(image))
     .catch((error) => res.send(error));
+
+exports.removeImage = (req, res) => db.Image.deleteOne({ _id: req.params.imageId })
+    .then(() => {
+        res.json('Deleted')
+    })
+    .catch((err) => {
+        res.send(err)
+    })
 
 module.exports = exports;
