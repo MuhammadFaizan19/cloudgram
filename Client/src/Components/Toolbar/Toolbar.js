@@ -6,7 +6,6 @@ import { signOut } from '../../Store/actions/authActions';
 import { NavLink } from 'react-router-dom';
 
 const Toolbar = ({ isLoggedIn, name, signOut }) => {
-    console.log(name)
     return (
         <header className={classes.Header}>
             <h2><NavLink className={classes.NavLink} to='/cloudgram' id='cloudgram' >Cloudgram</NavLink></h2>

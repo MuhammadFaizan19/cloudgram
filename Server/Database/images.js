@@ -15,5 +15,5 @@ let imageSchema = new mongoose.Schema({
     }
 })
 
-let Image = mongoose.model('Game', imageSchema);
+let Image = mongoose.model('Image', imageSchema);
 module.exports = Image;
