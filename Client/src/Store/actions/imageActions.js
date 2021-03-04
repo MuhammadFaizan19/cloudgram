@@ -4,7 +4,7 @@ export const imageUpload = (image, setProgress) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase()
         const userEmail = getState().firebase.auth.email;
-        const storageRef = firebase.storage().ref(image.name +Math.random() +image.lastModified);
+        const storageRef = firebase.storage().ref(image.name +Math.random()+ +image.lastModified);
 
         storageRef.put(image).on('state_changed', (snap) => {
             let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;

@@ -39,7 +39,7 @@ const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareI
             if (email !== currentUser) {
                 if (users.includes(email)) {
                     const shareData = {
-                        imageUrl: selectedImage.imagePath,
+                        imageUrl: selectedImage.imageUrl,
                         userEmail: email,
                         shared: true
                     }
