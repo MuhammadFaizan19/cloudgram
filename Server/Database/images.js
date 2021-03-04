@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 
 let userImagesSchema = new mongoose.Schema({
-    imagePath: {
+    imageUrl: {
         type: String,
         required: true
     },

@@ -71,7 +71,7 @@ const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareI
                 </div>
                 <div className={classes.Modimg}>
                     {images && images.map((i, index) => {
-                        return <img src={i.imagePath} className={selectImage(i) && classes.selectedImage} onClick={() => setSelectedImage(i)} alt='' key={index} />
+                        return <img src={i.imageUrl} className={selectImage(i) && classes.selectedImage} onClick={() => setSelectedImage(i)} alt='' key={index} />
                     })}
                 </div>
             </div>

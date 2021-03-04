@@ -21,7 +21,7 @@ const ImageGrid = ({ images, title }) => {
             {deleting && <ModalDelete setDeleting={setDeleting} images={images} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}
             <div>
                 {images && images.map((i, index) => {
-                    return <img src={i.imagePath} alt='' className={classes.Image} key={index} onClick={() => setSelectedImage(i)} />
+                    return <img src={i.imageUrl} alt='' className={classes.Image} key={index} onClick={() => setSelectedImage(i)} />
                 })}
             </div>
         </div>

@@ -12,7 +12,7 @@ const modalGallery = (props) => {
     return (
         <div className={classes.ModalGallery} onClick={clickHandler} >
             <div className={classes.Container}>
-                <img src={props.selectedImage.imagePath} alt='' />
+                <img src={props.selectedImage.imageUrl} alt='' />
             </div>
         </div>
     )
