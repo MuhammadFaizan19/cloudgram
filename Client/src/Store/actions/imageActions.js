@@ -13,7 +13,7 @@ export const imageUpload = (image, setProgress) => {
             dispatch({ type: 'IMAGE_UPLOAD_ERROR', err })
         }, async () => {
             const imageUrl = await storageRef.getDownloadURL();
-            axios.post('https://cloudgram.herokuapp.com/api/images', { imageUrl, userEmail, shared: false })
+            axios.post('http://localhost:3002/api/images', { imageUrl, userEmail, shared: false })
                 .then((res) => {
                     let images = getState().image.images;
                     images = [res.data].concat(images);
@@ -29,7 +29,7 @@ export const imageUpload = (image, setProgress) => {
 
 export const shareImage = (shareData) => {
     return (dispatch, getState) => {
-        axios.post('https://cloudgram.herokuapp.com/api/images', shareData)
+        axios.post('http://localhost:3002/api/images', shareData)
             .then((res) => {
                 dispatch({ type: 'IMAGE_SHARE_SUCCESS' })
             })
@@ -43,7 +43,7 @@ export const shareImage = (shareData) => {
 export const getImages = (shared) => {
     return (dispatch, getState) => {
         const userEmail = getState().firebase.auth.email;
-        axios.get('https://cloudgram.herokuapp.com/api/images')
+        axios.get('http://localhost:3002/api/images')
             .then((res) => {
                 let imagesList = res.data
                 if (!shared) {
@@ -68,7 +68,7 @@ export const getImages = (shared) => {
 
 export const deleteImage = (imageId) => {
     return (dispatch, getState) => {
-        axios.delete('https://cloudgram.herokuapp.com/api/images/' + imageId)
+        axios.delete('http://localhost:3002/api/images/' + imageId)
             .then(() => {
                 let newImagesList = getState().image.images
                 newImagesList = newImagesList.filter((image) => image._id !== imageId)
