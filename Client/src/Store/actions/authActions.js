@@ -86,7 +86,6 @@ export const getProfile = () => {
 		const uid = getState().firebase.auth.uid
 		firebase.firestore().collection('users').doc(uid).get()
 			.then(res => {
-				console.log(res.data())
 				dispatch({ type: 'GET_PROFILE_SUCCESS', data: res.data() })
 			})
 			.catch(err => {
