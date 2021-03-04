@@ -10,7 +10,7 @@ exports.getImages = (req, res) => {
 
 exports.createImage = (req, res) => {
     db.Image.create({
-        imagePath: 'http://cloudgram.herokuapp.com/' + req.file.path,
+        imagePath: 'http://localhost:3002/' + req.file.path,
         userEmail: req.body.userEmail,
         sharedTo: []
     })
