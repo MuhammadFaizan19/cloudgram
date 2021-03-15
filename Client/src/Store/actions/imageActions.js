@@ -1,26 +1,27 @@
 import axios from 'axios'
+import { imageActions } from './actionTypes'
 
 export const imageUpload = (image, setProgress) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase()
         const userEmail = getState().firebase.auth.email;
-        const storageRef = firebase.storage().ref(image.name +Math.random()+ +image.lastModified);
+        const storageRef = firebase.storage().ref(image.name + Math.random() + +image.lastModified);
 
         storageRef.put(image).on('state_changed', (snap) => {
             let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
             setProgress?.(percentage);
         }, (err) => {
-            dispatch({ type: 'IMAGE_UPLOAD_ERROR', err })
+            dispatch({ type: imageActions.IMAGE_UPLOAD_ERROR, err })
         }, async () => {
             const imageUrl = await storageRef.getDownloadURL();
-            axios.post('http://localhost:3002/api/images', { imageUrl, userEmail, shared: false })
+            axios.post('https://cloudgram.herokuapp.com/api/images', { imageUrl, userEmail, shared: false })
                 .then((res) => {
                     let images = getState().image.images;
                     images = [res.data].concat(images);
-                    dispatch({ type: 'IMAGE_UPLOAD_SUCCESS', images })
+                    dispatch({ type: imageActions.IMAGE_UPLOAD_SUCCESS, images })
                 })
                 .catch((err) => {
-                    dispatch({ type: 'IMAGE_UPLOAD_ERROR', err })
+                    dispatch({ type: imageActions.IMAGE_UPLOAD_ERROR, err })
                 })
         })
     }
@@ -29,12 +30,12 @@ export const imageUpload = (image, setProgress) => {
 
 export const shareImage = (shareData) => {
     return (dispatch, getState) => {
-        axios.post('http://localhost:3002/api/images', shareData)
+        axios.post('https://cloudgram.herokuapp.com/api/images', shareData)
             .then((res) => {
-                dispatch({ type: 'IMAGE_SHARE_SUCCESS' })
+                dispatch({ type: imageActions.IMAGE_SHARE_SUCCESS })
             })
             .catch((err) => {
-                dispatch({ type: 'IMAGE_SHARE_ERROR', err })
+                dispatch({ type: imageActions.IMAGE_SHARE_ERROR })
             })
     }
 }
@@ -43,7 +44,7 @@ export const shareImage = (shareData) => {
 export const getImages = (shared) => {
     return (dispatch, getState) => {
         const userEmail = getState().firebase.auth.email;
-        axios.get('http://localhost:3002/api/images')
+        axios.get('https://cloudgram.herokuapp.com/api/images')
             .then((res) => {
                 let imagesList = res.data
                 if (!shared) {
@@ -57,10 +58,10 @@ export const getImages = (shared) => {
                     })
                 }
 
-                dispatch({ type: 'GET_IMAGES_SUCCESS', images: imagesList })
+                dispatch({ type: imageActions.GET_IMAGES_SUCCESS, images: imagesList })
             })
             .catch((err) => {
-                dispatch({ type: 'GET_IMAGES_ERROR', err })
+                dispatch({ type: imageActions.GET_IMAGES_ERROR, err })
             })
     }
 }
@@ -68,14 +69,14 @@ export const getImages = (shared) => {
 
 export const deleteImage = (imageId) => {
     return (dispatch, getState) => {
-        axios.delete('http://localhost:3002/api/images/' + imageId)
+        axios.delete('https://cloudgram.herokuapp.com/api/images/' + imageId)
             .then(() => {
                 let newImagesList = getState().image.images
                 newImagesList = newImagesList.filter((image) => image._id !== imageId)
-                dispatch({ type: 'DELETE_IMAGE_SUCCESS', images: newImagesList })
+                dispatch({ type: imageActions.DELETE_IMAGE_SUCCESS, images: newImagesList })
             })
             .catch((err) => {
-                dispatch({ type: 'DELETE_IMAGE_ERROR' })
+                dispatch({ type: imageActions.DELETE_IMAGE_ERROR, err })
             })
     }
 }

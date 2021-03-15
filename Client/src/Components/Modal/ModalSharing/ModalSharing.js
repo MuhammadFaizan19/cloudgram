@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { shareImage } from '../../../Store/actions/imageActions';
 
 
-const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareImage }) => {
+const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareImage, err }) => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [email, setEmail] = useState(null)
     const [text, setText] = useState('Select An Image To Share')
@@ -34,7 +34,7 @@ const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareI
         setEmail(e.target.value)
     }
 
-    const handleShare = () => {
+    const handleShare = async () => {
         if (selectedImage) {
             if (email !== currentUser) {
                 if (users.includes(email)) {
@@ -43,10 +43,9 @@ const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareI
                         userEmail: email,
                         shared: true
                     }
-                    shareImage(shareData)
-                    setTimeout(() => {
-                        setSharing(false)
-                    }, 1000)
+                    await shareImage(shareData)
+                    if (err) alert(err)
+                    !err && setSharing(false)
                 }
                 else {
                     setText('User does not exist!')
@@ -84,6 +83,7 @@ const ModalSharing = ({ setSharing, images, currentUser, users, getUsers, shareI
 const mapStateToProps = (state) => {
     return {
         users: state.user.users,
+        err: state.image.err,
         currentUser: state.firebase.auth.email
     }
 }

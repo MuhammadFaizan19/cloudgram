@@ -1,15 +1,18 @@
+import { userActions } from '../actions/actionTypes'
+
 const initState = {
-    users: []
+    users: [],
+    err: null
 }
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'GET_USERS_SUCCESS':
+        case userActions.GET_USERS_SUCCESS:
             return {
-                ...state,
+                err: null,
                 users: action.users,
             }
-        case 'GET_USERS_ERROR':
+        case userActions.GET_USERS_ERROR:
             return {
                 ...state,
                 err: 'Error retrieving users'

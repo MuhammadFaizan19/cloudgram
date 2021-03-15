@@ -17,9 +17,15 @@ const Signin = ({ authError, signIn, googleSignIn }) => {
             [e.target.id]: e.target.value
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        signIn(state);
+        await signIn(state);
+        if (authError) alert(authError)
+    }
+
+    const handleGoogleSignIn = async () => {
+        await googleSignIn();
+        if (authError) alert(authError)
     }
 
     return (
@@ -29,17 +35,16 @@ const Signin = ({ authError, signIn, googleSignIn }) => {
                 <Input type="email" name="email" onChange={handleChange} />
                 <Input type="password" name="password" onChange={handleChange} />
                 <Button type="submit" onClick={handleSubmit}>Signin</Button>
-                {authError ? <p>{authError}</p> : null}
             </form>
             <p>OR</p>
-            <Button onClick={() => googleSignIn()} >Sign In With Google</Button>
+            <Button onClick={handleGoogleSignIn} >Sign In With Google</Button>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError,
+        authError: state.auth.err,
     }
 }
 

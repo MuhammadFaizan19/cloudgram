@@ -12,7 +12,6 @@ const Signup = ({ signUp, signupError }) => {
         password: '',
         fullname: ''
     });
-    const [error, setError] = useState(null)
 
     const handleChange = (e) => {
         setState({
@@ -20,7 +19,7 @@ const Signup = ({ signUp, signupError }) => {
             [e.target.name]: e.target.value
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const values = Object.values(state)
 
@@ -31,10 +30,11 @@ const Signup = ({ signUp, signupError }) => {
                 canSubmit = false
             }
         }
-        canSubmit && setError(null)
-        canSubmit && signUp(state);
-
-        !canSubmit && setError('Form not filled')
+        if (canSubmit) {
+            await signUp(state);
+            if (signupError) alert(signupError)
+        }
+        else alert('Form not filled')
     }
     return (
         <div className={classes.Signup}>
@@ -44,8 +44,6 @@ const Signup = ({ signUp, signupError }) => {
                 <Input type="email" name="email" onChange={handleChange} />
                 <Input type="password" name="password" onChange={handleChange} />
                 <Button type="submit" onClick={handleSubmit}>Signup</Button>
-                {signupError && <p>{signupError}</p>}
-                {error ? <p>{error}</p> : null}
             </form>
         </div>
     )
@@ -54,7 +52,7 @@ const Signup = ({ signUp, signupError }) => {
 
 const mapStateToProps = (state) => {
     return {
-        signupError: state.auth.signupError
+        signupError: state.auth.err
     }
 }
 

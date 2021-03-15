@@ -1,56 +1,57 @@
+import { authActions } from '../actions/actionTypes'
+
 const initState = {
-	authError: null,
 	userData: null,
-	signupError: null
+	err: null
 }
 
 const authReducer = (state = initState, action) => {
 	switch (action.type) {
-		case 'GOOGLE_LOGIN_ERROR':
+		case authActions.GOOOGLE_LOGIN_ERROR:
 			return {
 				...state,
-				authError: action.err.message
+				err: action.err.message
 			}
-		case 'GOOGLE_LOGIN_SUCCESS':
+		case authActions.GOOOGLE_LOGIN_SUCCESS:
 			return {
-				...state,
-				authError: null,
+				err: null,
 				userData: action.data
 			}
-		case 'SIGN_IN_SUCCESS':
+		case authActions.SIGN_IN_SUCCESS:
 			return {
-				...state,
-				authError: null,
+				err: null,
 				userData: action.data
 			}
-		case 'SIGN_IN_ERROR':
+		case authActions.SIGN_IN_ERROR:
 			return {
 				...state,
-				authError: action.err.message
+				err: action.err.message
 			}
-		case 'SIGNOUT_SUCCESS':
+		case authActions.SIGN_OUT_SUCCESS:
 			return {
-				...state,
+				err: null,
 				userData: null
 			}
-		case 'SIGNUP_SUCCESS':
+		case authActions.SIGN_UP_SUCCESS:
 			return {
-				...state,
-				authError: null,
+				err: null,
 				userData: action.data
 			}
-		case 'SIGNUP_ERROR':
+		case authActions.SIGN_UP_ERROR:
 			return {
 				...state,
-				signupError: action.err.message
+				err: action.err.message
 			}
-		case 'GET_PROFILE_SUCCESS':
+		case authActions.GET_PROFILE_SUCCESS:
 			return {
-				...state,
+				err: null,
 				userData: action.data
 			}
-		case 'GET_PROFILE_ERROR':
-			return state
+		case authActions.GET_PROFILE_ERROR:
+			return {
+				...state,
+				err: action.err.message
+			}
 		default:
 			return state
 	}

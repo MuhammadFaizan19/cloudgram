@@ -36,6 +36,7 @@ const UploadImage = ({ upload, setDeleting, title, uploadError, setSharing }) =>
     useEffect(() => {
         if (image) {
             upload(image, setProgress)
+            if (uploadError) alert(uploadError)
         }
         // eslint-disable-next-line
     }, [image])
@@ -51,7 +52,6 @@ const UploadImage = ({ upload, setDeleting, title, uploadError, setSharing }) =>
                 <button onClick={handleShare} className={classes.button}>Share</button>
                 <button onClick={handleDelete} className={classes.button} >Delete</button>
             </div>
-            {uploadError && <p>{uploadError}</p>}
             <p className={classes.progress} ></p>
 
         </div>
@@ -61,7 +61,7 @@ const UploadImage = ({ upload, setDeleting, title, uploadError, setSharing }) =>
 
 const mapStateToProps = (state) => {
     return {
-        uploadError: state.image.err,
+        uploadError: state.image.err
     }
 }
 

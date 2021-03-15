@@ -1,3 +1,5 @@
+import {authActions} from './actionTypes'
+
 export const signIn = () => {
 	return (dispatch, getState, { getFirebase }) => {
 		const firebase = getFirebase();
@@ -17,16 +19,16 @@ export const signIn = () => {
 							auth.sendPasswordResetEmail(loggedUser.email)
 							firestore.collection('users').doc(uid).set(loggedUser)
 								.then(res => {
-									dispatch({ type: 'GOOGLE_LOGIN_SUCCESS', data: loggedUser });
+									dispatch({ type: authActions.GOOOGLE_LOGIN_SUCCESS, data: loggedUser });
 								})
 						}
 						else {
-							dispatch({ type: 'GOOGLE_LOGIN_SUCCESS', data: res.data() });
+							dispatch({ type: authActions.GOOOGLE_LOGIN_SUCCESS, data: res.data() });
 						}
 					})
 			})
 			.catch((err) => {
-				dispatch({ type: 'GOOGLE_LOGIN_ERROR', err });
+				dispatch({ type: authActions.GOOOGLE_LOGIN_ERROR, err });
 			})
 	}
 }
@@ -37,11 +39,11 @@ export const signInEmailPassword = (creds) => {
 		firebase.auth().signInWithEmailAndPassword(creds.email, creds.password)
 			.then((res) => {
 				firebase.firestore().collection('users').doc(res.user.uid).get()
-					.then(res => dispatch({ type: 'SIGN_IN_SUCCESS', data: res.data() }))
+					.then(res => dispatch({ type: authActions.SIGN_IN_SUCCESS, data: res.data() }))
 					.catch(err => console.log(err))
 			})
 			.catch((err) => {
-				dispatch({ type: 'SIGN_IN_ERROR', err })
+				dispatch({ type: authActions.SIGN_IN_ERROR, err })
 			})
 	}
 }
@@ -50,7 +52,7 @@ export const signOut = () => {
 	return (dispatch, getState, { getFirebase }) => {
 		getFirebase().auth().signOut()
 			.then(() => {
-				dispatch({ type: 'SIGNOUT_SUCCESS' })
+				dispatch({ type: authActions.SIGN_OUT_SUCCESS })
 			})
 	}
 }
@@ -67,15 +69,14 @@ export const signUp = (newUser) => {
 				email: newUser.email,
 			})
 				.then((res) => {
-					dispatch({ type: 'SIGNUP_SUCCESS', data: { name: newUser.name, email: newUser.email } });
+					dispatch({ type: authActions.SIGN_UP_SUCCESS, data: { name: newUser.name, email: newUser.email } });
 				})
 				.catch((err) => {
 					console.log(err)
 				});
 		})
 			.catch(err => {
-				console.log(err.message)
-				dispatch({ type: 'SIGNUP_ERROR', err });
+				dispatch({ type: authActions.SIGN_UP_ERROR, err });
 			})
 	}
 }
@@ -86,10 +87,10 @@ export const getProfile = () => {
 		const uid = getState().firebase.auth.uid
 		firebase.firestore().collection('users').doc(uid).get()
 			.then(res => {
-				dispatch({ type: 'GET_PROFILE_SUCCESS', data: res.data() })
+				dispatch({ type: authActions.GET_PROFILE_SUCCESS, data: res.data() })
 			})
 			.catch(err => {
-				dispatch({ type: 'GET_PROFILE_ERROR' })
+				dispatch({ type: authActions.GET_PROFILE_ERROR,err })
 			})
 	}
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { deleteImage } from '../../../Store/actions/imageActions';
 
 
-const ModalSharing = ({ setDeleting, images, deleteImage }) => {
+const ModalSharing = ({ setDeleting, images, deleteImage, err }) => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [text, setText] = useState('Select An Image From Below')
 
@@ -22,12 +22,11 @@ const ModalSharing = ({ setDeleting, images, deleteImage }) => {
         }
     }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (selectedImage) {
-            deleteImage(selectedImage._id)
-            setTimeout(() => {
-                setDeleting(false)
-            }, 1000)
+            await deleteImage(selectedImage._id)
+            if (err) alert(err)
+            !err && setDeleting(false)
         }
         else {
             setText('Please Select An Image To Delete')
@@ -55,6 +54,7 @@ const ModalSharing = ({ setDeleting, images, deleteImage }) => {
 
 const mapStateToProps = (state) => {
     return {
+        err: state.image.err,
         currentUser: state.firebase.auth.email
     }
 }

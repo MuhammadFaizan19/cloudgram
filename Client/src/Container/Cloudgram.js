@@ -7,10 +7,9 @@ import { connect } from 'react-redux'
 import { getImages } from '../Store/actions/imageActions'
 import { getProfile } from '../Store/actions/authActions';
 
-const Cloudgram = ({ images, getImages, getProfile }) => {
+const Cloudgram = ({ images, getImages, getProfile, isLoggedIn, getImagesError, getProfileError }) => {
     const [title, setTitle] = useState('');
     const [change, setChange] = useState(true);
-
 
 
     const changeImagesHandler = () => {
@@ -19,17 +18,21 @@ const Cloudgram = ({ images, getImages, getProfile }) => {
     useEffect(() => {
         getImages(false);
         getProfile()
+        if (getImagesError) alert(getImagesError)
+        if (getProfileError) alert(getProfileError)
         // eslint-disable-next-line
-    }, [])
+    }, [isLoggedIn])
 
     useEffect(() => {
         if (change) {
             setTitle('Show Shared Images');
             getImages(false)
+            if (getImagesError) alert(getImagesError)
         }
         else {
             setTitle('Show My Images');
             getImages(true)
+            if (getImagesError) alert(getImagesError)
         }
         // eslint-disable-next-line
     }, [change])
@@ -45,7 +48,10 @@ const Cloudgram = ({ images, getImages, getProfile }) => {
 
 const mapStateToProps = (state) => {
     return {
-        images: state.image.images
+        isLoggedIn: state.firebase.auth.uid,
+        images: state.image.images,
+        getImagesError: state.image.err,
+        getProfileError: state.auth.err
     }
 }
 
